@@ -1,0 +1,368 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 17px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="평균연봉, 11월 입사자, 퇴사자​는?">
+    <meta name="description" content="">
+    <title>연봉 및 회사 성장 예측 제공 플랫폼</title>
+    <link rel="stylesheet" href="{% static 'nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static '연봉-예측.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{%static 'jquery-1.9.1.min.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{%static 'nicepage.js' %}" defer=""></script>
+    <meta name="generator" content="Nicepage 5.2.0, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=korean">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    
+    
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/logo.png"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="연봉 및 회사 성장 예측 제공 플랫폼">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en"><header class="u-border-1 u-border-palette-5-base u-header" id="sec-ce16" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <a href="{% url 'home' %}" class="u-image u-logo u-image-1" data-image-width="654" data-image-height="231" title="Home">
+          <img src="{%static 'img/logo.png' %}" class="u-logo-image u-logo-image-1" data-image-width="80">
+        </a>
+        <nav data-position="" class="u-menu u-menu-one-level u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700;">
+            <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link" href="#" style="padding: 2px 0px; font-size: calc(1em + 4px);">
+              <svg class="u-svg-link" viewBox="0 0 24 24"><use xlink:href="#menu-hamburger"></use></svg>
+              <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-custom-font u-heading-font u-nav u-spacing-5 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-30 u-border-grey-30 u-border-hover-grey-30 u-border-no-bottom u-border-no-left u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-palette-1-base" href="{%url  'innovup' %}" style="padding: 0px 30px;">iNNOVup 소개</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-grey-30 u-border-grey-30 u-border-hover-grey-30 u-border-no-bottom u-border-no-left u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-palette-1-base" href="{% url 'search' %}" style="padding: 0px 30px;">연봉조회</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{%url 'innovup' %}">iNNOVup 소개</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'search' %}">연봉조회</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+      <section class="u-clearfix u-section-1" id="sec-fb12">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+          <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+            <div class="u-layout">
+              <div class="u-layout-row">
+                <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+                  <div class="u-container-layout u-container-layout-1">
+                    <h5 class="u-text u-text-palette-1-base u-text-1">{{com_name}}</h5>
+                  </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                  <div class="u-container-layout u-valign-top u-container-layout-2">
+                    <h6 class="u-text u-text-default u-text-grey-50 u-text-2">{{road_name}}</h6>
+                  </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                  <div class="u-container-layout u-valign-middle u-container-layout-3">
+                    <h6 class="u-text u-text-default u-text-grey-50 u-text-3">{{com_code}}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-2">
+            <div class="u-layout">
+              <div class="u-layout-row">
+                <div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-4">
+                  <div class="u-border-1 u-border-grey-5 u-container-layout u-container-layout-4">
+                    <p class="u-small-text u-text u-text-default u-text-variant u-text-4">평균연봉</p>
+                    <h1 class="u-text u-text-default u-text-5">{{salary}}</h1>
+                    <p class="u-text u-text-default u-text-6">만원</p>
+                  </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-5">
+                  <div class="u-border-1 u-border-grey-5 u-container-layout u-container-layout-5">
+                    <p class="u-text u-text-default u-text-7">입사자 수</p>
+                    <h6 class="u-text u-text-8">{{entrance}} 명</h6>
+                  </div>
+                </div>
+                <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-6">
+                  <div class="u-border-1 u-border-grey-5 u-container-layout u-container-layout-6">
+                    <p class="u-text u-text-default u-text-9">퇴사자 수</p>
+                    <h6 class="u-text u-text-default u-text-10">{{retire}}  명</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </section>    
+          
+    <section class="u-clearfix u-color-scheme-u10 u-color-style-multicolor-1 u-section-2" id="sec-c8d2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-default u-text-1">입사자/퇴사자 그래프</p>
+      </div>
+      <div style="width: 800px; height: 500px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart"></canvas>
+      </div>
+      <script type="text/javascript">
+          var context = document
+              .getElementById('myChart')
+              .getContext('2d');
+          var a = [];
+          {% for i in dt.신규 %}
+            a.push({{i}})
+          {% endfor %}
+
+          var b = [];
+          {% for i in dt.상실 %}
+            b.push({{i}})
+          {% endfor %}
+
+
+          var myChart = new Chart(context, 
+          {
+              type: 'bar', // 차트의 형태
+              data: { // 차트에 들어갈 데이터
+                  labels: [
+                          '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                  ],
+                  datasets: [
+                      { //데이터
+                          label: '입사자', //차트 제목
+                          fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                          data: a,
+                          backgroundColor: [
+                              //색상
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                          ],
+                          borderColor: [
+                              //경계선 색상
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(54, 162, 235, 1)',
+                          ],
+                          borderWidth: 1 //경계선 굵기
+                      } ,
+                      {
+                          label: '퇴사자',
+                          fill: false,
+                          data: b,
+                          backgroundColor: [
+                              //색상
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(255, 206, 86, 0.2)'
+                          ],
+                          borderColor: [
+                              //경계선 색상
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(255, 206, 86, 1)',
+                          ],
+                          borderWidth: 1 ,
+                      } 
+                  ]
+              },
+              options: {
+                  scales: {
+                      yAxes: [
+                          {
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }
+                      ]
+                  }
+              }
+          },
+          )
+          
+      </script>
+    </section>
+
+    <section class="u-clearfix u-color-scheme-u10 u-color-style-multicolor-1 u-section-3" id="sec-b434">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-default u-text-1">평균월급 그래프</p>
+      </div>
+      <div style="width: 800px; height: 500px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart2"></canvas>
+      </div>
+      <script type="text/javascript">
+          var context = document
+              .getElementById('myChart2')
+              .getContext('2d');
+          var d = [];
+          {% for i in dt2.평균월급 %}
+            d.push({{i}})
+          {% endfor %}
+
+        
+          var myChart2 = new Chart(context, {
+              type: 'bar', // 차트의 형태
+              data: { // 차트에 들어갈 데이터
+                  labels: [
+                          '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                  ],
+                  datasets: [
+                      { //데이터
+                          label: '평균월급(단위: 만원)', //차트 제목
+                          fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                          data: d,
+                          backgroundColor: [
+                              //색상
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(153, 102, 255, 0.2)',
+                              'rgba(255, 159, 64, 0.2)',
+                              'rgba(105, 115, 55, 0.2)',
+                              'rgba(175, 205, 75, 0.2)',
+                              'rgba(215, 105, 85, 0.2)',
+                              'rgba(285, 185, 35, 0.2)',
+                              
+                          ],
+                          borderColor: [
+                              //경계선 색상
+                              'rgba(255, 99, 132, 1)',
+                              'rgba(54, 162, 235, 1)',
+                              'rgba(255, 206, 86, 1)',
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(153, 102, 255, 1)',
+                              'rgba(255, 159, 64, 1)',
+                              'rgba(105, 115, 55, 1)',
+                              'rgba(175, 205, 75, 1)',
+                              'rgba(215, 105, 85, 1)',
+                              'rgba(285, 185, 35, 1)',
+                          ],
+                          borderWidth: 1 //경계선 굵기
+                      } ,                    
+                  ]
+              },
+              options: {
+                  scales: {
+                      yAxes: [
+                          {
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }
+                      ]
+                  }
+              }
+          });
+      </script>
+    </section>
+
+    <section class="u-clearfix u-color-scheme-u10 u-color-style-multicolor-1 u-section-4" id="sec-21b3">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-default u-text-1">MoM 그래프</p>
+      </div>
+      <div style="width: 800px; height: 500px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart3"></canvas>
+      </div>
+      <script type="text/javascript">
+          var context = document
+              .getElementById('myChart3')
+              .getContext('2d');
+          var c = [];
+          {% for i in dt3.MOM %}
+          c.push({{i}})
+          {% endfor %}
+
+      
+          var myChart3 = new Chart(context, {
+              type: 'line', // 차트의 형태
+              data: { // 차트에 들어갈 데이터
+                  labels: [
+                          '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                  ],
+                  datasets: [
+                      { //데이터
+                          label: 'MoM(월별성장률)', //차트 제목
+                          fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                          data: c,
+                          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          lineTension: 0     
+                      } ,                                            
+                  ]
+              },
+              options:  { 
+                  scales: {
+                      yAxes: [
+                          {
+                              ticks: {
+
+                              }
+                          }
+                      ]
+                  }
+              }
+          });
+      </script>
+    </section>
+
+    <section class="u-align-left u-clearfix u-image u-shading u-section-5" src="" data-image-width="256" data-image-height="256" id="sec-0322">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1">11월 입,퇴사자와 기업성장지표​는?</h1>
+        <p class="u-large-text u-text u-text-variant u-text-2">이 기업의 11월 입,퇴사자 수와 성장지표가 궁금하다면 클릭해보세요.</p> 
+        <a href="/cmgr/?company_name={{key}}" class="u-btn u-button-style u-palette-2-base u-btn-1">Click!</a>     
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-062e">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-align-center u-small-text u-text u-text-default u-text-variant u-text-1">2022 SW 빅데이터 분석과정</p>
+      </div>
+    </footer>
+   
+  
+</body>
+</html>

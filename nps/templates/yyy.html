@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <body>
+        <div>
+            <h1>
+                잘되나
+            </h1>
+            <hr>
+            <h2>
+                잘되나
+            </h2>
+            <!-- <form action="/yyy/" method="post">
+                {% csrf_token %}
+                과목을 입력하세요 : <input type="text" name="st_name"><br>
+                <input type="submit">
+            </form> -->
+            <hr>
+            <h1>
+                   
+                {% for result in context %}
+                 {{ result.df  }}
+                {% endfor %}
+                
+            </h1>
+        </div>
+
+  </body>
+</html>

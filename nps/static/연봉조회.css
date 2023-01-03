@@ -1,0 +1,37 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 723px;
+}
+
+.u-section-1 .u-search-1 {
+  height: auto;
+  width: 332px;
+  min-height: 42px;
+  margin: 24px auto 60px 40px;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+  margin: auto;
+ 
+}
+
+.dataframe thead th {
+  background-color: white;
+  text-align: center;
+  
+}
+
+tr:nth-child(2n+1)  { background-color : white}
+tr:nth-child(2n) { background-color : white}
+
+tr.hover {
+  background-color: white; cursor: pointer;
+}
+
+
+@media (max-width: 575px) {
+  .u-section-1 .u-search-1 {
+    margin-left: 8px;
+  }
+}

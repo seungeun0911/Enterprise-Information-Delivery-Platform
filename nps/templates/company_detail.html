@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+    <hr>
+    <input type="button" value="뒤로가기" onclick="history.back();"/>
+    <hr>
+    
+    
+    <div style="width: 800px; height: 700px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart"></canvas>
+    </div>
+    <script type="text/javascript">
+        var context = document
+            .getElementById('myChart')
+            .getContext('2d');
+        var a = [];
+        {% for i in dt.신규 %}
+           a.push({{i}})
+        {% endfor %}
+
+        var b = [];
+        {% for i in dt.상실 %}
+           b.push({{i}})
+        {% endfor %}
+
+
+        var myChart = new Chart(context, 
+        {
+            type: 'bar', // 차트의 형태
+            data: { // 차트에 들어갈 데이터
+                labels: [
+                        '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                ],
+                datasets: [
+                    { //데이터
+                        label: '입사자', //차트 제목
+                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                        data: a,
+                        backgroundColor: [
+                            //색상
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            //경계선 색상
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(54, 162, 235, 1)',
+                        ],
+                        borderWidth: 1 //경계선 굵기
+                    } ,
+                    {
+                        label: '퇴사자',
+                        fill: false,
+                        data: b,
+                        backgroundColor: [
+                            //색상
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(255, 206, 86, 0.2)'
+                        ],
+                        borderColor: [
+                            //경계선 색상
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1 ,
+                    } 
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        )
+        
+    </script>
+
+    <div style="width: 800px; height: 700px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart2"></canvas>
+    </div>
+    <script type="text/javascript">
+        var context = document
+            .getElementById('myChart2')
+            .getContext('2d');
+        var d = [];
+        {% for i in dt2.평균월급 %}
+           d.push({{i}})
+        {% endfor %}
+
+       
+        var myChart2 = new Chart(context, {
+            type: 'bar', // 차트의 형태
+            data: { // 차트에 들어갈 데이터
+                labels: [
+                        '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                ],
+                datasets: [
+                    { //데이터
+                        label: '평균월급(단위: 만원)', //차트 제목
+                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                        data: d,
+                        backgroundColor: [
+                            //색상
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(105, 115, 55, 0.2)',
+                            'rgba(175, 205, 75, 0.2)',
+                            'rgba(215, 105, 85, 0.2)',
+                            'rgba(285, 185, 35, 0.2)',
+                            
+                        ],
+                        borderColor: [
+                            //경계선 색상
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(105, 115, 55, 1)',
+                            'rgba(175, 205, 75, 1)',
+                            'rgba(215, 105, 85, 1)',
+                            'rgba(285, 185, 35, 1)',
+                        ],
+                        borderWidth: 1 //경계선 굵기
+                    } ,
+                    
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+
+    <div style="width: 800px; height: 700px; margin: auto;">
+        <!--차트가 그려질 부분-->
+        <canvas id="myChart3"></canvas>
+    </div>
+    <script type="text/javascript">
+        var context = document
+            .getElementById('myChart3')
+            .getContext('2d');
+        var c = [];
+        {% for i in dt3.MOM %}
+        c.push({{i}})
+        {% endfor %}
+
+    
+        var myChart3 = new Chart(context, {
+            type: 'line', // 차트의 형태
+            data: { // 차트에 들어갈 데이터
+                labels: [
+                        '1월','2월','3월','4월','5월','6월','7월','8월','9월','10월'
+                ],
+                datasets: [
+                    { //데이터
+                        label: 'MoM', //차트 제목
+                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                        data: c,
+                    } ,
+                    
+                ]
+            },
+            options:  { 
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
